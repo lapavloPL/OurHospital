@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Schedule</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li><a href="@Url.Action("UsersWithRoles", "ManageUser")">Worker list</a></li>
+                    <li><a href="@Url.Action("Index", "Schedule")">Schedule</a></li>
+                    @if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("Admin"))
+                    {
+                        <li><a href="@Url.Action("List", "UserEdit")">List</a></li>
+                        <li><a href="@Url.Action("Index", "Roles")">Roles Manager</a></li>
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <h1>Omówienie grafiku:</h1>
+        <ul>
+            <li>Czarny - Admin</li>
+            <li>Pomarańczowy - Doktor Anestezjolog</li>
+            <li>Niebieski - Doktor - Kardiolog</li>
+            <li>Szary - Doktor - Laryngolog</li>
+            <li>Zielony - Doktor - Neurolog</li>
+            <li>Ciemny zielony - Doktor - Chirurg</li>
+            <li>Fioletowy - Doktor - Urolog</li>
+            <li>Brązowy - Doktor - Okulista</li>
+            <li>Czerwony - pielęgniarki </li>  
+        </ul>
+        </p>
+        <p>Ilość całodobowych dyżurów nie przekracza 10 jednostek w miesiącu. W każdym dniu jest przynajmniej dwóch lub więcej lekarzy i jedna pielęgniarka.</p>
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

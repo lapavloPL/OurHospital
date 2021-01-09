@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Opis projektu</h1>
+    <h2>Projekt Szpital - Our Hospital</h2>
+    <h3>Przykładowe dane do zalogowania:  ADMIN - login: admin  / hasło: lap111</h3>
+    <h3>Przykładowe dane do zalogowania:  USER - login: user  / hasło: lap222</h3>
+    <p class="lead">
+        Do wykonania projektu użyłem platformy ASP.NET MVC. Po otwarciu pojawia się okno logowania. Jeśli nie ma konta, można je założyć klikając w formularz rejestracji.
+        W rejestracji wymagane jest podanie: imię, nazwisko, nazwa użytkownika, e-mail, hasło, potwierdzenie hasła i numer pesel, którego poprawność weryfikowana jest poprzez klasę ValidatePesel w DataLibrary.
+        Jest też opcja przypomnienia hasła, które wysyłane jest na adres e-mail podany przy rejestracji.  Po zalogowaniu (w zależności od rodzaju konta <b>(admin/pracownik)</b> są dwa różne menu.
+        Pełne menu jest widoczne tylko z konta admina. Część menu widzi tylko użytkownik zarejestrowany jako lekarz (doctor) lub pielęgniarka (nurse).
+    </p>
+
+    <p class="lead">
+        Użytkownik zarejestrowany jako <b>lekarz/pielęgniarka</b> widzi w menu trzy opcje: <b>Home</b> - przejście do strony głównej,
+        <b>Worker list</b> - lista pracowników, na której można zobaczyć: imię, nazwisko, nazwę użytkownika, adres e-mail oraz rolę jaką pełni,
+        <b>Schedule</b> - grafik rozłożony na cały miesiąc. Z panelu zwykłego pracownika nie można go edytować. Jest tylko do wglądu dla pracownika.
+        Kolory wraz z opisem grafiku umieściłem na stronie Schedule.
+    </p>
+
+    <p class="lead">
+        Administrator w menu widzi trzy opcje o których wspomniałem powyżej a także dodatkowe: List - lista wszystkich użytkowników w platformie wraz z ich wszystkimi danymi.
+        Administrator ma możliwość edytować dane poprzez kliknięcie <b>Edit</b>. Może je również usunąć z bazy poprzez kliknięcie <b>Delete</b>.  Administrator odpowiada za uzupełnienie
+        numerów PWZ lekarzy.  Na stronie <b>Roles Manager</b> Administrator może zarządzać wszystkimi rolami i uprawnieniami użytkowników. Może stworzyć nowe role (stanowiska) a także
+        dodać je do istniejących użytkowników, zmienić dane stanowisko u danego użytkownika lub wykasować stanowisko od danego użytkownika.
+        Administrator na stronie <b>Schedule</b> ma możliwość edytować grafik poprzez edycje poszczególnych rekordów lub dodawanie kolejnych a także może je usunąć.
+    </p>
+</div>

@@ -1,0 +1,6 @@
+﻿@{
+    ViewBag.Title = "Authorized Failed";
+}
+<h2>Authorized Failed</h2>
+<p>@ViewData["Message"]</p>
+@Html.ActionLink("Back to previous page", null, null, null, new { href = Request.UrlReferrer })

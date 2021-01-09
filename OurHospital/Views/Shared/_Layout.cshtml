@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+@using Microsoft.AspNet.Identity
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hospital Project</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/Template/css/simple-sidebar.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="d-flex" id="wrapper">
+
+        <!-- Sidebar -->
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading">
+                @Html.ActionLink("Hospital", "Index", "Home", new { area = "" })
+                <img src="~/Images/doctor.png" width="180" height="180" />
+            </div>
+            <h3 style="text-align: center">User</h3>
+            <div class="list-group list-group-flush">
+                <a href="@Url.Action("Index", "Home")" class="list-group-item list-group-item-action bg-light">Home</a>
+                <a href="@Url.Action("UsersWithRoles", "ManageUser")" class="list-group-item list-group-item-action bg-light">Worker list</a>
+                <a href="@Url.Action("Index", "Schedule")" class="list-group-item list-group-item-action bg-light">Schedule</a>
+
+                @if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("Admin"))
+                {
+                    <h3 style="text-align: center">Admin</h3>
+                    <a href="@Url.Action("List", "UserEdit")" class="list-group-item list-group-item-action bg-light">List</a>
+                    <a href="@Url.Action("Index", "Roles")" class="list-group-item list-group-item-action bg-light">Roles Manager</a>
+                }
+
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        @if (Request.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                </ul>
+                            }
+                        }
+                        else
+                        {
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>@Html.ActionLink("Register | ", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                                <li>&nbsp&nbsp</li>
+                                <li>@Html.ActionLink(" Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                            </ul>
+                        }
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                @RenderBody()
+
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Template/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", false)
+</body>
+</html>
+
+
